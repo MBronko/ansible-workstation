@@ -3,7 +3,6 @@
   apt:
     name:
       - zsh
-      - git
       - fonts-powerline
       - curl
       - wget

@@ -23,7 +23,6 @@
       - tree
       - ncdu
       - zip
-      - git
       - build-essential
       - openssh-client
       - manpages
