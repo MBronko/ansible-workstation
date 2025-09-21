@@ -1,0 +1,18 @@
+- name: Install plymouth
+  become: true
+  apt:
+    name:
+      - plymouth
+      - plymouth-themes
+      - initramfs-tools
+    state: present
+    update_cache: yes
+
+- name: Set Plymouth theme
+  become: true
+  command: "plymouth-set-default-theme -R spinner"
+  changed_when: false
+
+- name: Update initramfs for Plymouth
+  become: true
+  command: "update-initramfs -u"

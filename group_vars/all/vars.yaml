@@ -1,5 +1,6 @@
 ansible_user: bronko
 ansible_become_method: su
+ansible_become_flags: "-"
 timezone: Europe/Warsaw
 
 git_user_name: MBronko

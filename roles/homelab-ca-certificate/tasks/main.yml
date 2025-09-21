@@ -10,5 +10,5 @@
 
 - name: Update trusted CA certificates
   become: true
-  command: /usr/sbin/update-ca-certificates
+  command: update-ca-certificates
   when: ca_cert.changed
