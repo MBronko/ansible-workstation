@@ -1,0 +1,37 @@
+- name: Ensure ansible managed sources.list is used
+  become: true
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure i386 architecture is enabled (required for Steam)
+  become: true
+  command: dpkg --add-architecture i386
+
+- name: Update apt cache and ensure basic packages are installed
+  become: true
+  apt:
+    name:
+      - vim
+      - vlc
+      - net-tools
+      - fastfetch
+      - htop
+      - tree
+      - ncdu
+      - zip
+      - git
+      - build-essential
+      - openssh-client
+      - manpages
+      - manpages-dev
+      - steam-installer
+      - mesa-vulkan-drivers 
+      - libglx-mesa0:i386 
+      - mesa-vulkan-drivers:i386 
+      - libgl1-mesa-dri:i386
+    state: present
+    update_cache: yes

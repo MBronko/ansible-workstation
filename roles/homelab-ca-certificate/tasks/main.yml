@@ -1,0 +1,14 @@
+- name: Copy custom CA certificate
+  become: true
+  copy:
+    src: homelab-ca.crt
+    dest: /usr/local/share/ca-certificates/homelab-ca.crt
+    owner: root
+    group: root
+    mode: '0644'
+  register: ca_cert
+
+- name: Update trusted CA certificates
+  become: true
+  command: /usr/sbin/update-ca-certificates
+  when: ca_cert.changed

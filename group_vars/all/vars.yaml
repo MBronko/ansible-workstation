@@ -1,0 +1,3 @@
+ansible_user: bronko
+ansible_become_method: su
+timezone: Europe/Warsaw

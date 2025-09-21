@@ -1,0 +1,20 @@
+all:
+  hosts:
+    bronkoputer:
+      ansible_host: bronkoputer.home
+    bronkobian:
+      ansible_host: bronkobian.home
+
+workstation:
+hosts:
+    bronkobian:
+    # bronkoputer:
+
+main_workstation:
+  hosts:
+    bronkobian:
+    # bronkoputer:
+
+secondary_workstation:
+  hosts:
+    bronkobian:

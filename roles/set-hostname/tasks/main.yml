@@ -1,0 +1,12 @@
+- name: Set hostname
+  become: true
+  hostname:
+    name: "{{ hostname }}"
+
+- name: Ensure /etc/hosts has correct hostname
+  become: true
+  lineinfile:
+    path: /etc/hosts
+    regexp: '127\.0\.1\.1\s+'
+    line: "127.0.1.1 {{ hostname }}"
+    state: present
