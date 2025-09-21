@@ -1,0 +1,66 @@
+- name: Ensure packages needed for Zsh and Powerlevel10k are installed
+  become: true
+  apt:
+    name:
+      - zsh
+      - git
+      - fonts-powerline
+      - curl
+      - wget
+      - lsd
+      - autojump
+    state: present
+    update_cache: yes
+
+- name: Install Oh My Zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    version: master
+    update: yes
+    depth: 1
+
+- name: Copy .zshrc config file
+  copy:
+    src: .zshrc
+    dest: ~/.zshrc
+
+- name: Copy additional .zshrc config files
+  copy:
+    src: .zshrc.d/
+    dest: ~/.config/.zshrc.d/
+
+- name: Install Powerlevel10k theme
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
+    version: master
+    update: yes
+    depth: 1
+
+- name: Copy Powerlevel10k config
+  copy:
+    src: .p10k.zsh
+    dest: ~/.p10k.zsh
+
+- name: Install autosuggestions plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    version: master
+    update: yes
+    depth: 1
+
+- name: Install F-Sy-H (syntax highlighting) plugin
+  git:
+    repo: https://github.com/z-shell/F-Sy-H.git
+    dest: ~/.oh-my-zsh/custom/plugins/F-Sy-H
+    version: main
+    update: yes
+    depth: 1
+
+- name: Set Zsh as default shell
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
