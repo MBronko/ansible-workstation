@@ -25,6 +25,8 @@
       - ncdu
       - zip
       - rsync
+      - python3-pip
+      - pipx
       - build-essential
       - openssh-client
       - manpages
