@@ -28,6 +28,7 @@
       - openssh-client
       - manpages
       - manpages-dev
+      - libreoffice
       - steam-installer
       - mesa-vulkan-drivers 
       - libglx-mesa0:i386 
