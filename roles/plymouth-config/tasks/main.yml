@@ -10,7 +10,7 @@
 
 - name: Set Plymouth theme
   become: true
-  command: "plymouth-set-default-theme -R spinner"
+  command: "plymouth-set-default-theme spinner"
   changed_when: false
 
 - name: Update initramfs for Plymouth

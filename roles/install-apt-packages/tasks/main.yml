@@ -10,6 +10,7 @@
 - name: Ensure i386 architecture is enabled (required for Steam)
   become: true
   command: dpkg --add-architecture i386
+  changed_when: false
 
 - name: Update apt cache and ensure basic packages are installed
   become: true
