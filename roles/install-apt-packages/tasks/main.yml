@@ -23,6 +23,7 @@
       - tree
       - ncdu
       - zip
+      - rsync
       - build-essential
       - openssh-client
       - manpages
