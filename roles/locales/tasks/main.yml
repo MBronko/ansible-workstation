@@ -1,0 +1,30 @@
+- name: Set system timezone
+  ansible.builtin.timezone:
+    name: "{{ timezone }}"
+
+- name: Ensure locales package is installed
+  become: true
+  apt:
+    name: 
+      - locales
+    state: present
+    update_cache: yes
+
+- name: Generate required locales
+  become: true
+  community.general.locale_gen:
+    name:
+      - en_US.UTF-8
+      - en_GB.UTF-8
+    state: present
+
+- name: Set default system locale
+  become: true
+  copy:
+    dest: /etc/default/locale
+    content: |
+      LANG="en_US.UTF-8"
+      LANGUAGE="en_US:en"
+      LC_TIME="en_GB.UTF-8"
+      LC_PAPER="en_GB.UTF-8"
+      LC_MEASUREMENT="en_GB.UTF-8"
