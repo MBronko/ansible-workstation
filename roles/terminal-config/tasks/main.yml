@@ -7,6 +7,7 @@
       - curl
       - wget
       - lsd
+      - fzf
       - autojump
     state: present
     update_cache: yes

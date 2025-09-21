@@ -1,0 +1,14 @@
+- name: Get firefox profiles
+  shell: "awk -F= '/^Path/ {print $2}' ~/.mozilla/firefox/profiles.ini"
+  register: firefox_profiles
+  changed_when: false
+
+- name: Convert firefox profiles stdout to a list
+  set_fact:
+    firefox_profiles_list: "{{ firefox_profiles.stdout_lines }}"
+
+- name: Apply firefox configuration in about:config
+  copy:
+    src: user.js
+    dest: ~/.mozilla/firefox/{{ item }}/user.js
+  loop: "{{ firefox_profiles_list }}"
