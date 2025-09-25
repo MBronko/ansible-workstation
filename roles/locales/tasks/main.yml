@@ -1,4 +1,5 @@
 - name: Set system timezone
+  become: true
   ansible.builtin.timezone:
     name: "{{ timezone }}"
 
@@ -20,11 +21,14 @@
 
 - name: Set default system locale
   become: true
-  copy:
-    dest: /etc/default/locale
-    content: |
-      LANG="en_US.UTF-8"
-      LANGUAGE="en_US:en"
-      LC_TIME="en_GB.UTF-8"
-      LC_PAPER="en_GB.UTF-8"
-      LC_MEASUREMENT="en_GB.UTF-8"
+  command: localectl set-locale LANG=en_US.UTF-8 LC_TIME=en_GB.UTF-8 LC_PAPER=en_GB.UTF-8 LC_MEASUREMENT=en_GB.UTF-8
+  changed_when: false
+
+- name: Set polish keyboard in a traditional way
+  become: true
+  command: localectl set-x11-keymap pl pc105
+  changed_when: false
+
+- name: Set polish keyboard specifically for gnome just to be sure
+  command: gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'pl')]"
+  changed_when: false
