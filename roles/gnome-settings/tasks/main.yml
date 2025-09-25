@@ -34,6 +34,10 @@
   command: gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
   changed_when: false
 
+- name: Dock pinned apps
+  command: gsettings set org.gnome.shell favorite-apps "['firefox-esr.desktop', 'com.discordapp.Discord.desktop', 'org.gnome.Nautilus.desktop']"
+  changed_when: false
+
 - name: Keyboard shortcuts - Calculator
   command: "{{ item }}"
   loop:
