@@ -1,0 +1,13 @@
+[Unit]
+Description=Mount General Data SMB Share
+After=network.target
+
+[Mount]
+What=//dev.truenas.home/general-data
+Where=/mnt/share/general-data
+Type=cifs
+Options=_netdev,auto,rw,vers=3.0,credentials=/etc/samba/credentials,uid=1000,gid=1000
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
