@@ -13,8 +13,12 @@
 
 - name: Copy fonts
   copy:
-    src: "fonts/"
+    src: fonts/
     dest: ~/.local/share/fonts/
+
+- name: Refresh font cache
+  command: fc-cache -f
+  changed_when: false
 
 - name: Set font in terminal
   shell: /usr/bin/zsh -c 'gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${"$(gsettings get org.gnome.Terminal.ProfilesList default)":1:-1}/ font "MesloLGS Nerd Font 12"'
