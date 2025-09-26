@@ -4,13 +4,21 @@
     name:
       - zsh
       - git
-      - fonts-powerline
       - curl
       - wget
       - lsd
       - fzf
       - autojump
     state: latest
+
+- name: Copy fonts
+  copy:
+    src: "fonts/"
+    dest: ~/.local/share/fonts/
+
+- name: Set font in terminal
+  shell: /usr/bin/zsh -c 'gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${"$(gsettings get org.gnome.Terminal.ProfilesList default)":1:-1}/ font "MesloLGS Nerd Font 12"'
+  changed_when: false
 
 - name: Install Oh My Zsh
   git:

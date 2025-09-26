@@ -1,0 +1,6 @@
+- name: Add user to sudo group
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: sudo
+    append: yes

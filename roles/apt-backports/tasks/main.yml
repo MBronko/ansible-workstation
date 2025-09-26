@@ -8,6 +8,11 @@
     mode: '0644'
   register: backports_source
 
+- name: Update apt cache
+  become: true
+  apt:
+    update_cache: yes
+
 - name: Install kernel and AMD GPU firmware from backports
   become: true
   apt:
