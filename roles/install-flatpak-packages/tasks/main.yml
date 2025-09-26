@@ -4,15 +4,14 @@
     name:
       - flatpak
       - gnome-software-plugin-flatpak
-    state: present
-    update_cache: yes
+    state: latest
 
 - name: Add Flatpak remotes
   become: true
   community.general.flatpak_remote:
     name: flathub
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    state: present
+    state: latest
     method: system
 
 - name: Install Flatpak applications
@@ -26,5 +25,5 @@
       - net.lutris.Lutris
       - com.usebottles.bottles
       - com.github.iwalton3.jellyfin-media-player
-    state: present
+    state: latest
     remote: flathub

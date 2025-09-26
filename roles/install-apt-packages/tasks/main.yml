@@ -12,7 +12,13 @@
   command: dpkg --add-architecture i386
   changed_when: false
 
-- name: Update apt cache and ensure basic packages are installed
+- name: Update apt cache and all apt packages
+  become: true
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Install basic packages through apt
   become: true
   apt:
     name:
@@ -27,6 +33,7 @@
       - rsync
       - python3-pip
       - pipx
+      - git
       - build-essential
       - openssh-client
       - manpages
@@ -37,5 +44,4 @@
       - libglx-mesa0:i386 
       - mesa-vulkan-drivers:i386 
       - libgl1-mesa-dri:i386
-    state: present
-    update_cache: yes
+    state: latest

@@ -8,8 +8,7 @@
   apt:
     name: 
       - locales
-    state: present
-    update_cache: yes
+    state: latest
 
 - name: Generate required locales
   become: true

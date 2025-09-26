@@ -2,9 +2,7 @@
   become: true
   ansible.builtin.apt:
     name: python3-cryptography
-    state: present
-    update_cache: yes
-
+    state: latest
 
 - name: Ensure SSH key exists
   openssh_keypair:
@@ -20,4 +18,3 @@
     src: ~/.ssh/id_ed25519.pub
     dest: "../ssh_public_keys/{{ hostname }}_id_ed25519.pub"
     flat: yes
-  when: ssh_key.changed

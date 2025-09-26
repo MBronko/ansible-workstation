@@ -3,14 +3,14 @@
   apt:
     name:
       - zsh
+      - git
       - fonts-powerline
       - curl
       - wget
       - lsd
       - fzf
       - autojump
-    state: present
-    update_cache: yes
+    state: latest
 
 - name: Install Oh My Zsh
   git:

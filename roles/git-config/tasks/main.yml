@@ -3,8 +3,7 @@
   apt:
     name:
       - git
-    state: present
-    update_cache: yes
+    state: latest
 
 - name: Set global Git username
   community.general.git_config:

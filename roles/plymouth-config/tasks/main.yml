@@ -5,8 +5,7 @@
       - plymouth
       - plymouth-themes
       - initramfs-tools
-    state: present
-    update_cache: yes
+    state: latest
 
 - name: Set Plymouth theme
   become: true
