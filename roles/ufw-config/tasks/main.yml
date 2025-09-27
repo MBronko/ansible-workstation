@@ -1,0 +1,29 @@
+- name: Install ufw
+  become: true
+  apt:
+    name:
+      - ufw
+    state: latest
+
+- name: Deny incoming traffic
+  become: true
+  ufw:
+    policy: deny
+    direction: incoming
+    
+- name: Deny incoming traffic
+  become: true
+  ufw:
+    policy: allow
+    direction: outgoing
+
+- name: Allow ssh connections
+  become: true
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: Enable ufw
+  become: true
+  ufw:
+    state: enabled
