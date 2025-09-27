@@ -5,9 +5,18 @@
     regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
     line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
     backrefs: yes
-  register: grub_config
+  register: cmdline_result
+
+- name: Enable os-prober
+  become: true
+  lineinfile:
+    path: /etc/default/grub
+    regexp: 'GRUB_DISABLE_OS_PROBER='
+    line: 'GRUB_DISABLE_OS_PROBER=false'
+    backrefs: yes
+  register: osprober_result
 
 - name: Update GRUB configuration
   become: true
   command: update-grub
-  when: grub_config.changed
+  when: cmdline_result.changed or osprober_result.changed
