@@ -1,0 +1,8 @@
+- name: Check if Window is Ready Remover is installed
+  stat:
+    path: ~/.local/share/gnome-shell/extensions/windowIsReady_Remover@nunofarruca@gmail.com
+  register: extension_dir
+
+- name: Install Window is Ready Remover
+  command: gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "windowIsReady_Remover@nunofarruca@gmail.com"
+  when: not extension_dir.stat.exists

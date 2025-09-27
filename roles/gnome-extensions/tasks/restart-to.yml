@@ -1,0 +1,8 @@
+- name: Check if Restart To is installed
+  stat:
+    path: ~/.local/share/gnome-shell/extensions/restartto@tiagoporsch.github.io
+  register: extension_dir
+
+- name: Install Restart To
+  command: gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "restartto@tiagoporsch.github.io"
+  when: not extension_dir.stat.exists

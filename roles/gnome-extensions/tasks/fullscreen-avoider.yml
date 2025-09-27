@@ -1,0 +1,8 @@
+- name: Check if Fullscreen Avoider is installed
+  stat:
+    path: ~/.local/share/gnome-shell/extensions/fullscreen-avoider@noobsai.github.com
+  register: extension_dir
+
+- name: Install Fullscreen Avoider
+  command: gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "fullscreen-avoider@noobsai.github.com"
+  when: not extension_dir.stat.exists

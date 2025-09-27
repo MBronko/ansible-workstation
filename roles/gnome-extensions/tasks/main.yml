@@ -1,0 +1,27 @@
+- name: Install gnome extensions app
+  become: true
+  apt:
+    name:
+      - gnome-shell-extensions
+    state: latest
+
+- name: Install and configure Dash to Dock
+  import_tasks: dash-to-dock.yml
+
+- name: Install and configure Blur my Shell
+  import_tasks: blur-my-shell.yml
+
+- name: Enable System Monitor
+  import_tasks: system-monitor.yml
+
+- name: Install Fullscreen Avoider
+  import_tasks: fullscreen-avoider.yml
+
+- name: Install Restart To
+  import_tasks: restart-to.yml
+
+- name: Install Tray Icons Reloaded
+  import_tasks: tray-icons-reloaded.yml
+
+- name: Install Window is Ready Remover
+  import_tasks: window-is-ready-remover.yml

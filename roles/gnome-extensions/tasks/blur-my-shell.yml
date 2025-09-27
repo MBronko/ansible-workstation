@@ -1,0 +1,28 @@
+- name: Check if Blur my Shell is installed
+  stat:
+    path: ~/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
+  register: extension_dir
+
+- name: Install Blur my Shell
+  command: gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "blur-my-shell@aunetx"
+  when: not extension_dir.stat.exists
+
+# Extension settings
+- name: Blur my shell - panel static blur
+  command: dconf write /org/gnome/shell/extensions/blur-my-shell/panel/static-blur false
+  changed_when: false
+- name: Blur my shell - panel sigma
+  command: dconf write /org/gnome/shell/extensions/blur-my-shell/panel/sigma 100
+  changed_when: false
+- name: Blur my shell - panel brightness
+  command: dconf write /org/gnome/shell/extensions/blur-my-shell/panel/brightness 0.35
+  changed_when: false
+- name: Blur my shell - dash to dock static blur
+  command: dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/static-blur false
+  changed_when: false
+- name: Blur my shell - dash to dock sigma
+  command: dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/sigma 100
+  changed_when: false
+- name: Blur my shell - dash to dock brightness
+  command: dconf write /org/gnome/shell/extensions/blur-my-shell/dash-to-dock/brightness 0.35
+  changed_when: false

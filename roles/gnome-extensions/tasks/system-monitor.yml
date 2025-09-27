@@ -1,0 +1,3 @@
+- name: Enable System Monitor extensions
+  command: gnome-extensions enable system-monitor@gnome-shell-extensions.gcampax.github.com
+  changed_when: false

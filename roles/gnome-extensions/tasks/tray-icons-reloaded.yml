@@ -1,0 +1,8 @@
+- name: Check if Tray Icons Reloaded is installed
+  stat:
+    path: ~/.local/share/gnome-shell/extensions/trayIconsReloaded@selfmade.pl
+  register: extension_dir
+
+- name: Install Tray Icons Reloaded
+  command: gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "trayIconsReloaded@selfmade.pl"
+  when: not extension_dir.stat.exists

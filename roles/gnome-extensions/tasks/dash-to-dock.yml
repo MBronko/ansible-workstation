@@ -1,0 +1,41 @@
+- name: Check if Dash to Dock is installed
+  stat:
+    path: ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com
+  register: extension_dir
+
+- name: Install Dash to Dock
+  command: gdbus call --session --dest org.gnome.Shell.Extensions --object-path /org/gnome/Shell/Extensions --method org.gnome.Shell.Extensions.InstallRemoteExtension "dash-to-dock@micxgx.gmail.com"
+  changed_when: false
+  when: not extension_dir.stat.exists
+
+# Extension settings
+- name: Dash to Dock - Position on screen
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/dock-position "'LEFT'"
+  changed_when: false
+- name: Dash to Dock - Intelligent autohide
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/dock-fixed true
+  changed_when: false
+- name: Dash to Dock - Extend to the screen edge
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/extend-height true
+  changed_when: false
+- name: Dash to Dock - Icon size limit
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size 32
+  changed_when: false
+- name: Dash to Dock - Show trash can
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/show-trash false
+  changed_when: false
+- name: Dash to Dock - Show mounted volumes
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/show-mounts false
+  changed_when: false
+- name: Dash to Dock - Wiggle urgent applications
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/dance-urgent-applications false
+  changed_when: false
+- name: Dash to Dock - Click action
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/click-action "'focus-minimize-or-previews'"
+  changed_when: false
+- name: Dash to Dock - Shrink the dash
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/custom-theme-shrink true
+  changed_when: false
+- name: Dash to Dock - Show overview on startup
+  command: dconf write /org/gnome/shell/extensions/dash-to-dock/disable-overview-on-startup true
+  changed_when: false
