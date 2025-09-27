@@ -5,3 +5,7 @@ timezone: Europe/Warsaw
 
 git_user_name: MBronko
 git_user_email: michal.brono@protonmail.com
+
+wireguard_server_public_key: 2Vb5JweRLLyF/ufwueuHfAG2iTLDgz2msHz8hNNrRSU=
+wireguard_server_host: wg.bronko.lol
+wireguard_server_port: 51820

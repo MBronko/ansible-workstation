@@ -1,0 +1,19 @@
+- name: Configure workstation
+  hosts: workstation
+  roles:
+    - install-apt-packages
+    - install-flatpak-packages
+    - gnome-extensions
+    - gnome-settings
+    - set-hostname
+    - user-configuration
+    - grub-config
+    - plymouth-config
+    - ufw-config
+    - locales
+    - generate-ssh-keys
+    - git-config
+    - terminal-config
+    - network-shares
+    - homelab-ca-certificate
+    - firefox-config

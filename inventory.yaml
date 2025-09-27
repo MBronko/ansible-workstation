@@ -4,16 +4,37 @@ all:
       ansible_host: bronkoputer.home
     bronkobian:
       ansible_host: bronkobian.home
+    ansible-test:
+      ansible_host: 10.10.10.30
+    ansible-test2:
+      ansible_host: 10.10.10.29
+    ansible-test3:
+      ansible_host: 10.10.10.31
+
+automount_network_share:
+  hosts:
+    bronkobian:
+    bronkoputer:
+    ansible-test:
+    ansible-test2:
+    ansible-test3:
 
 workstation:
-hosts:
-    bronkobian:
-    # bronkoputer:
-
-main_workstation:
   hosts:
     bronkobian:
     # bronkoputer:
+
+    # ansible-test:
+    # ansible-test2:
+    # ansible-test3:
+
+main_workstation:
+  hosts:
+    bronkoputer:
+
+    # ansible-test:
+    # ansible-test2:
+    # ansible-test3:
 
 secondary_workstation:
   hosts:

@@ -1,9 +1,6 @@
+- import_playbook: workstation.yml
+
 - name: Configure main workstation
   hosts: main_workstation
   roles:
-    # - set-hostname
-    # - apt-backports
-    # - homelab-ca-certificate
-    # - install-apt-packages
-    # - install-flatpak-packages
-    - generate-ssh-keys
+    - apt-backports

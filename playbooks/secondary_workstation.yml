@@ -1,0 +1,7 @@
+- import_playbook: workstation.yml
+
+- name: Configure secondary workstation
+  hosts: secondary_workstation
+  roles:
+    - touchpad-config
+    - wireguard-config
