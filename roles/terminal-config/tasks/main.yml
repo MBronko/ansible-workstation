@@ -24,6 +24,10 @@
   shell: /usr/bin/zsh -c 'gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${"$(gsettings get org.gnome.Terminal.ProfilesList default)":1:-1}/ font "MesloLGS Nerd Font 12"'
   changed_when: false
 
+- name: Use custom font in terminal
+  shell: /usr/bin/zsh -c 'gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${"$(gsettings get org.gnome.Terminal.ProfilesList default)":1:-1}/ use-system-font false'
+  changed_when: false
+
 - name: Install Oh My Zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git

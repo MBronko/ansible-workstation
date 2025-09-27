@@ -11,7 +11,7 @@
     policy: deny
     direction: incoming
     
-- name: Deny incoming traffic
+- name: Allow outgoing traffic
   become: true
   ufw:
     policy: allow

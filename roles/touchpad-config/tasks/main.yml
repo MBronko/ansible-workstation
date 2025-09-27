@@ -1,0 +1,3 @@
+- name: Traditional scroll direction
+  command: gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+  changed_when: false
