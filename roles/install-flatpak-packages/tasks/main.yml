@@ -25,5 +25,6 @@
       - net.lutris.Lutris
       - com.usebottles.bottles
       - com.github.iwalton3.jellyfin-media-player
+      - org.gnome.Firmware
     state: latest
     remote: flathub
