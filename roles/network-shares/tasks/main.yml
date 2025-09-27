@@ -1,29 +1,60 @@
-- name: Ensure mount point exists
+- name: Install cifs-utils
+  become: true
+  apt:
+    name:
+      - cifs-utils
+    state: latest
+
+- name: Ensure samba directory exists
+  become: true
   file:
-    path: "{{ mount_point }}"
+    path: /etc/samba
     state: directory
     mode: '0755'
 
-- name: Create systemd mount unit file
-  template:
-    src: mnt-myshare.mount.j2
-    dest: "/etc/systemd/system/{{ unit_name }}"
-    mode: '0644'
-
-- name: Reload systemd daemon
-  command: systemctl daemon-reload
+- name: Create credentials file
   become: true
+  template:
+    src: credentials.j2
+    dest: /etc/samba/credentials
+    mode: '0600'
+
+- name: Ensure mount points exist
+  become: true
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - /mnt/nas/general
+    - /mnt/nas/media
+
+- name: Copy systemd mount unit file
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/{{ item }}
+    mode: '0644'
+  loop:
+    - mnt-nas-general.mount
+    - mnt-nas-media.mount
 
 - name: Enable systemd mount unit
+  become: true
   systemd:
-    name: "{{ unit_name }}"
+    name: "{{ item }}"
     daemon-reload: true
     enabled: true
     state: started
-  become: true
+  loop:
+    - mnt-nas-general.mount
+    - mnt-nas-media.mount
 
-- name: Ensure systemd mount unit is started
-  systemd:
-    name: "{{ unit_name }}"
-    state: started
-  become: true
+- name: Bookmark network shares
+  lineinfile:
+    path: ~/.config/gtk-3.0/bookmarks
+    line: "{{ item }}"
+    create: yes
+  loop:
+    - file:///mnt/nas/general NAS
+    - file:///mnt/nas/media Media
