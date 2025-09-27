@@ -1,5 +1,6 @@
 #  These values were read using "dconf watch /" command
 
+# System settings
 - name: Automatic Screen blank
   command: gsettings set org.gnome.desktop.session idle-delay 5400
   changed_when: false
@@ -38,6 +39,8 @@
   command: gsettings set org.gnome.shell favorite-apps "['firefox-esr.desktop', 'com.discordapp.Discord.desktop', 'org.gnome.Nautilus.desktop']"
   changed_when: false
 
+
+# Keyboard shortcuts
 - name: Keyboard shortcuts - Calculator
   command: "{{ item }}"
   loop:
@@ -60,4 +63,14 @@
     - gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'kgx'
     - gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Terminal'
     - gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+  changed_when: false
+
+
+# Tweaks
+- name: Tweaks - Middle click paste
+  command: gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
+  changed_when: false
+
+- name: Tweaks - Titlebar buttons
+  command: gsettings set org.gnome.desktop.wm.preferences button-layout 'icon:minimize,maximize,close'
   changed_when: false
